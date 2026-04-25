@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function ImageWithFallback({ src, alt, className = '' }) {
-  const [failed, setFailed] = useState(!src);
+  const sources = useMemo(() => (Array.isArray(src) ? src.filter(Boolean) : src ? [src] : []), [src]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    setFailed(!src);
-  }, [src]);
+    setIndex(0);
+  }, [sources]);
 
-  if (failed) {
+  const currentSource = sources[index];
+
+  if (!currentSource) {
     return (
       <div className={`image-fallback ${className}`.trim()} role="img" aria-label={alt || 'Product image unavailable'}>
         <span>Hidden Thoughts</span>
@@ -15,5 +18,9 @@ export default function ImageWithFallback({ src, alt, className = '' }) {
     );
   }
 
-  return <img className={className} src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} />;
+  function handleError() {
+    setIndex((current) => current + 1);
+  }
+
+  return <img className={className} src={currentSource} alt={alt} loading="lazy" onError={handleError} />;
 }

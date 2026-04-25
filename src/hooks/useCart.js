@@ -11,8 +11,12 @@ function readCart() {
   }
 }
 
+function serializeCart(items) {
+  return JSON.stringify(items);
+}
+
 function writeCart(items) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+  localStorage.setItem(STORAGE_KEY, serializeCart(items));
   window.dispatchEvent(new CustomEvent(CART_EVENT, { detail: items }));
 }
 
@@ -25,8 +29,9 @@ export function useCart() {
 
   useEffect(() => {
     function syncCart(event) {
-      if (event?.type === 'storage' && event.key && event.key !== STORAGE_KEY) return;
-      setItems(readCart());
+      const nextItems = event?.type === CART_EVENT && Array.isArray(event.detail) ? event.detail : readCart();
+
+      setItems((current) => (serializeCart(current) === serializeCart(nextItems) ? current : nextItems));
     }
 
     window.addEventListener('storage', syncCart);
@@ -60,6 +65,13 @@ export function useCart() {
           name: product.name,
           price: product.price,
           imageUrl: product.imageUrl,
+          image: product.image,
+          imagePath: product.imagePath,
+          image_url: product.image_url,
+          image_path: product.image_path,
+          images: product.images,
+          thumbnail: product.thumbnail,
+          photo: product.photo,
           category: product.category,
           quantity: 1
         }

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import logoWordmark from '../../assets/MainLogo.png';
 
 const footerLinks = [
   { to: '/', label: 'Home' },
@@ -11,9 +12,8 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
-        <div>
-          <p className="wordmark footer-wordmark">Hidden Thoughts</p>
-        </div>
+        <img className="footer-wordmark" src={logoWordmark} alt="Hidden Thoughts" />
+        <p className="footer-copy">Issue 001. Downtown Toronto based.</p>
       </div>
       <div className="footer-column">
         <p className="footer-label">Navigate</p>
@@ -27,9 +27,9 @@ export default function Footer() {
       </div>
       <div className="footer-column">
         <p className="footer-label">Studio</p>
+        <p>@hidden_thoughts</p>
         <p>Toronto / Online</p>
-        <p>studio@hiddenthoughts.example</p>
-        <p>Selected goods, live catalog, no excess.</p>
+        <p>Design services / Objects / Printed matter</p>
       </div>
     </footer>
   );

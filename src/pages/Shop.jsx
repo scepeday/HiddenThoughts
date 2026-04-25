@@ -43,9 +43,7 @@ export default function Shop() {
 
   return (
     <>
-      <PageIntro
-        title="Live Catalog"
-      />
+      <PageIntro eyebrow="02 / Catalog" title="Live Catalog" />
 
       <section className="section section--tight">
         <div className="shop-toolbar">

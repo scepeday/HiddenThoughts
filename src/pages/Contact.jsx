@@ -5,18 +5,22 @@ export default function Contact() {
   return (
     <>
       <PageIntro
-        eyebrow="Contact"
-        title="Send a note before the next drop."
+        eyebrow="04 / Contact"
+        title="Private correspondence."
+        text="Use the form for collaborations, stockist questions, styling requests, or project review."
       />
       <section className="contact-grid">
         <div className="contact-card">
           <p className="eyebrow">Studio</p>
           <h2>Toronto / Online</h2>
           <p>studio@hiddenthoughts.example</p>
-          <p>Press, wholesale, styling, and student project review inquiries.</p>
           <div className="contact-card__notes">
-            <p><strong>Reply window</strong> 1 to 2 business days</p>
-            <p><strong>Best for</strong> collaborations, stockist questions, and project review</p>
+            <p>
+              <strong>Reply window</strong> 1 to 2 business days
+            </p>
+            <p>
+              <strong>Focus</strong> editorial projects, collaborations, and storefront questions
+            </p>
           </div>
         </div>
         <form className="contact-form" onSubmit={(event) => event.preventDefault()}>

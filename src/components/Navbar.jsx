@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import logoOne from '../../assets/Logo1.png';
+import logoWordmark from '../../assets/Logo1.png';
+import logoSymbol from '../../assets/Logo2.png';
 import { useCart } from '../hooks/useCart';
 
 const links = [
@@ -16,7 +17,8 @@ export default function Navbar() {
   return (
     <header className="site-header">
       <NavLink className="brand-lockup" to="/" aria-label="Hidden Thoughts home">
-        <img className="brand-lockup__wordmark" src={logoOne} alt="Hidden Thoughts wordmark" />
+        <img className="brand-lockup__symbol" src={logoSymbol} alt="" aria-hidden="true" />
+        <img className="brand-lockup__wordmark" src={logoWordmark} alt="Hidden Thoughts" />
       </NavLink>
       <nav className="nav-links" aria-label="Main navigation">
         {links.map((link) => (

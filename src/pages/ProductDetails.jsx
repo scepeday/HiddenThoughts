@@ -10,7 +10,7 @@ import { useApi } from '../hooks/useApi';
 import { useCart } from '../hooks/useCart';
 import { getProductById, getProducts } from '../services/api';
 import { formatCurrency } from '../utils/formatters';
-import { getProductImageUrl } from '../utils/images';
+import { getProductImageCandidates } from '../utils/images';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -61,7 +61,7 @@ export default function ProductDetails() {
     <>
       <section className="product-detail">
         <div className="product-detail__media">
-          <ImageWithFallback src={getProductImageUrl(current)} alt={imageAlt} />
+          <ImageWithFallback src={getProductImageCandidates(current)} alt={imageAlt} />
         </div>
         <div className="product-detail__content">
           <Link className="back-link" to="/shop">
@@ -75,19 +75,19 @@ export default function ProductDetails() {
           </div>
           <div className="product-facts">
             <div>
-              <span className="eyebrow">Type</span>
-              <strong>{current.featured ? 'Featured drop' : 'Catalog piece'}</strong>
-            </div>
-            <div>
               <span className="eyebrow">Availability</span>
               <strong>{stockCount > 0 ? `${stockCount} available` : 'Sold out'}</strong>
+            </div>
+            <div>
+              <span className="eyebrow">Editorial note</span>
+              <strong>Private signal object / live API data</strong>
             </div>
           </div>
           <div className="product-detail__actions">
             <Button onClick={() => addItem(current)} disabled={stockCount <= 0}>
               {stockCount > 0 ? 'Add to cart' : 'Currently unavailable'}
             </Button>
-            <p className="product-detail__note">Dynamic images, pricing, and stock are kept intact from the product API.</p>
+            <p className="product-detail__note">Images, pricing, and stock stay connected to the backend catalog.</p>
           </div>
         </div>
       </section>
